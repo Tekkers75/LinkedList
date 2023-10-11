@@ -58,6 +58,28 @@ public:
         }
     }
 
+
+    void insertAfter(int DataAfter, int data) {
+        Node* newNode = new Node(data);
+        Node* current = head;
+
+        while (current != nullptr) {
+            if (current->data == DataAfter) {
+                if (current == tail) {
+                    tail = newNode;  // Обновляем хвост списка, если вставляем после хвостового узла
+                }
+                newNode->prev = current;
+                newNode->next = current->next;
+                if (current->next != nullptr) {
+                    current->next->prev = newNode;
+                }
+                current->next = newNode;
+                return;
+            }
+            current = current->next;
+        }
+    }
+
     void print() {
         Node* current = head;
         while (current != nullptr) {

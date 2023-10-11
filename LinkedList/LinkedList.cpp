@@ -42,6 +42,10 @@ int main() {
     list.insertHead(42);
     list.print();
 
+
+    list.insertAfter(42, 56);
+    list.print();
+
     return 0;
 }
 
