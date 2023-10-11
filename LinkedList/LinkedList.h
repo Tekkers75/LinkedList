@@ -26,6 +26,21 @@ public:
         tail = nullptr;
     }
 
+    void insertHead(int data) {
+        Node* newNode = new Node(data);
+        // Если список пустой, новый узел становится головным и хвостовым
+        if (head == nullptr) {
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            newNode->next = head;
+            head->prev = newNode;
+            head = newNode;
+        }
+            
+    }
+
     void insert(int data) {
         Node* newNode = new Node(data);
         // Если список пустой, новый узел становится головным и хвостовым

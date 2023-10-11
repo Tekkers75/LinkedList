@@ -38,6 +38,9 @@ int main() {
     std::cout << "Отсортированный список: ";
     list.print();
      
+    list.insert(65);
+    list.insertHead(42);
+    list.print();
 
     return 0;
 }
