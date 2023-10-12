@@ -1,11 +1,12 @@
 ﻿#include <iostream>
 #include "LinkedList.h"
+#include "Iterator.h"
 
 
 int main() {
 
     setlocale(LC_ALL, "rus");
-    LinkedList list;
+    LinkedList<int> list;
 
     list.insert(30);
     list.insert(10);
@@ -15,7 +16,7 @@ int main() {
 
     // Поиск элемента
     int searchData = 30;
-    Node* foundNode = list.search(searchData);
+    Node<int>* foundNode = list.search(searchData);
     if (foundNode != nullptr) {
         std::cout << "Элемент " << searchData << " найден." << std::endl;
     }
@@ -47,10 +48,16 @@ int main() {
     list.print();
 
 
-    for (LinkedList::Iterator it = list.begin(); it != list.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+    //for (LinkedList<int>::Iterator<int> it = list.begin(); it != list.end(); ++it) {
+    //    std::cout << *it << " ";
+    //}
+    //std::cout << std::endl;
+
+
+    //for (LinkedList<int>::Iterator<int> it = list.begin(); it != list.end(); ++it) {
+    //    std::cout << *it << " ";
+    //}
+    //std::cout << std::endl;
 
     return 0;
 }

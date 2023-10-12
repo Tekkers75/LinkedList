@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
+#include "Iterator.h"
 
+template<typename T>
 class Node{
 public:
-    int data;
+    T data;
     Node* next;
     Node* prev;
 
@@ -14,11 +16,11 @@ public:
     }
 };
 
-
-class LinkedList {
+template<typename T>
+class LinkedList /*: public AbstractIterated<T>*/ {
 private:
-    Node* head;
-    Node* tail;
+    Node<T>* head;
+    Node<T>* tail;
 
 public:
     LinkedList() {
@@ -26,8 +28,8 @@ public:
         tail = nullptr;
     }
 
-    void insertHead(int data) {
-        Node* newNode = new Node(data);
+    void insertHead(const T& data) {
+        Node<T>* newNode = new Node<T>(data);
         // ≈сли список пустой, новый узел становитс€ головным и хвостовым
         if (head == nullptr) {
             head = newNode;
@@ -41,8 +43,8 @@ public:
             
     }
 
-    void insert(int data) {
-        Node* newNode = new Node(data);
+    void insert(const T& data) {
+        Node<T>* newNode = new Node<T>(data);
         // ≈сли список пустой, новый узел становитс€ головным и хвостовым
         if (head == nullptr) {
             head = newNode;
@@ -59,9 +61,9 @@ public:
     }
 
 
-    void insertAfter(int DataAfter, int data) {
-        Node* newNode = new Node(data);
-        Node* current = head;
+    void insertAfter(int DataAfter, const T& data) {
+        Node<T>* newNode = new Node<T>(data);
+        Node<T>* current = head;
 
         while (current != nullptr) {
             if (current->data == DataAfter) {
@@ -81,7 +83,7 @@ public:
     }
 
     void print() {
-        Node* current = head;
+        Node<T>* current = head;
         while (current != nullptr) {
             // ¬ыводим данные текущего узла
             std::cout << current->data << " ";
@@ -91,8 +93,8 @@ public:
         std::cout << std::endl;
     }
 
-    Node* search(int data) {
-        Node* current = head;
+    Node<T>* search(const T& data) {
+        Node<T>* current = head;
         while (current != nullptr) {
             if (current->data == data) {
                 // ¬озвращаем узел, если найден элемент
@@ -104,8 +106,8 @@ public:
         return nullptr; 
     }
 
-    void remove(int data) {
-        Node* current = head;
+    void remove(const T& data) {
+        Node<T>* current = head;
         while (current != nullptr) {
             if (current->data == data) {
                 if (current == head) {
@@ -134,10 +136,10 @@ public:
 
     // —ортировка выбором
     void sort() {
-        Node* current = head;
+        Node<T>* current = head;
         while (current != nullptr) {
-            Node* minNode = current;
-            Node* temp = current->next;
+            Node<T>* minNode = current;
+            Node<T>* temp = current->next;
             while (temp != nullptr) {
                 if (temp->data < minNode->data) {
                     minNode = temp;
@@ -154,13 +156,57 @@ public:
         }
     }
 
-
-    class Iterator {
+    template<typename T>
+    class Iterator : public AbstractIterator<T> {
     private:
-        Node* current;
+        Node<T>* current;
 
     public:
-        Iterator(Node* node) {
+        Iterator(Node<T>* node) {
+            current = node;
+        }
+
+        T& operator*() override {
+            return current->data;
+        }
+
+        AbstractIterator<T>& operator++() override {
+            current = current->next;
+            return *this;
+        }
+
+        AbstractIterator<T> operator++(int) override {
+            AbstractIterator<T> temp = *this;
+            ++(*this);
+            return temp;
+        }
+
+        bool operator==(const AbstractIterator<T>& other) override {
+            const Iterator* otherIterator = dynamic_cast<const Iterator*>(&other);
+            return current == otherIterator->current;
+        }
+
+        bool operator!=(const AbstractIterator<T>& other) override {
+            return !(*this == other);
+        }
+    };
+    
+    ///не понимаю
+    Iterator begin()  {
+        return Iterator(head);
+    }
+
+    Iterator end()  {
+        return Iterator (nullptr);
+    }
+
+
+   /* class Iterator {
+    private:
+        Node<T>* current;
+
+    public:
+        Iterator(Node<T>* node) {
             current = node;
         }
 
@@ -194,7 +240,7 @@ public:
 
     Iterator end() {
         return Iterator(nullptr);
-    }
+    }*/
 
 
 };
