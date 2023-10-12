@@ -46,6 +46,12 @@ int main() {
     list.insertAfter(42, 56);
     list.print();
 
+
+    for (LinkedList::Iterator it = list.begin(); it != list.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+
     return 0;
 }
 

@@ -154,5 +154,48 @@ public:
         }
     }
 
+
+    class Iterator {
+    private:
+        Node* current;
+
+    public:
+        Iterator(Node* node) {
+            current = node;
+        }
+
+        int& operator*() {
+            return current->data;
+        }
+
+        Iterator& operator++() {
+            current = current->next;
+            return *this;
+        }
+
+        Iterator operator++(int) {
+            Iterator temp = *this;
+            ++(*this);
+            return temp;
+        }
+
+        bool operator==(const Iterator& other) {
+            return current == other.current;
+        }
+
+        bool operator!=(const Iterator& other) {
+            return current != other.current;
+        }
+    };
+
+    Iterator begin() {
+        return Iterator(head);
+    }
+
+    Iterator end() {
+        return Iterator(nullptr);
+    }
+
+
 };
 
