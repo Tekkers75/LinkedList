@@ -40,7 +40,7 @@ public:
             head->prev = newNode;
             head = newNode;
         }
-            
+
     }
 
     void insert(const T& data) {
@@ -98,12 +98,12 @@ public:
         while (current != nullptr) {
             if (current->data == data) {
                 // Возвращаем узел, если найден элемент
-                return current;  
+                return current;
             }
             current = current->next;
         }
         // Если элемент не найден, возвращаем nullptr
-        return nullptr; 
+        return nullptr;
     }
 
     void remove(const T& data) {
@@ -112,22 +112,22 @@ public:
             if (current->data == data) {
                 if (current == head) {
                     // Обновляем голову списка, если удаляемый элемент - головной узел
-                    head = current->next;  
+                    head = current->next;
                 }
                 if (current == tail) {
                     // Обновляем хвост списка, если удаляемый элемент - хвостовой узел
-                    tail = current->prev;  
+                    tail = current->prev;
                 }
                 if (current->prev != nullptr) {
                     // Обновляем ссылку на следующий узел для предыдущего узла
-                    current->prev->next = current->next;  
+                    current->prev->next = current->next;
                 }
                 if (current->next != nullptr) {
                     // Обновляем ссылку на предыдущий узел для следующего узла
-                    current->next->prev = current->prev;  
+                    current->next->prev = current->prev;
                 }
                 // Удаляем узел
-                delete current;  
+                delete current;
                 return;
             }
             current = current->next;
@@ -156,6 +156,27 @@ public:
         }
     }
 
+
+    //AbstractIterator<T>& begin() const override {
+    //    return *head;
+    //}
+
+    //AbstractIterator<T>& end() const override {
+    //    return *tail;
+    //}
+
+
+    ///не понимаю
+    //Iterator begin() {
+    //    return Iterator(head);
+    //}
+
+    //Iterator end() {
+    //    return Iterator(nullptr);
+    //}
+};
+
+/// Закинуть в класс?
     template<typename T>
     class Iterator : public AbstractIterator<T> {
     private:
@@ -190,15 +211,6 @@ public:
             return !(*this == other);
         }
     };
-    
-    ///не понимаю
-    Iterator begin()  {
-        return Iterator(head);
-    }
-
-    Iterator end()  {
-        return Iterator (nullptr);
-    }
 
 
    /* class Iterator {
@@ -242,6 +254,4 @@ public:
         return Iterator(nullptr);
     }*/
 
-
-};
 
