@@ -17,44 +17,44 @@ public:
 };
 
 
+//template<typename T>
+//class Iterator : public AbstractIterator<T> {
+//private:
+//    Node<T>* current;
+//
+//public:
+//    Iterator(Node<T>* node) {
+//        current = node;
+//    }
+//
+//    T& operator*() override {
+//        return current->data;
+//    }
+//
+//    AbstractIterator<T>& operator++() override {
+//        current = current->next;
+//        return *this;
+//    }
+//
+//    AbstractIterator<T>& operator++(int) override {
+//        Iterator<T> temp = *this;
+//        ++(*this);
+//        return temp;
+//    }
+//
+//    bool operator==(const AbstractIterator<T>& other) override {
+//        const Iterator* otherIterator = dynamic_cast<const Iterator*>(&other);
+//        return current == otherIterator->current;
+//    }
+//
+//    bool operator!=(const AbstractIterator<T>& other) override {
+//        return !(*this == other);
+//    }
+//};
+
+
 template<typename T>
-class Iterator : public AbstractIterator<T> {
-private:
-    Node<T>* current;
-
-public:
-    Iterator(Node<T>* node) {
-        current = node;
-    }
-
-    T& operator*() override {
-        return current->data;
-    }
-
-    AbstractIterator<T>& operator++() override {
-        current = current->next;
-        return *this;
-    }
-
-    AbstractIterator<T>& operator++(int) override {
-        Iterator<T> temp = *this;
-        ++(*this);
-        return temp;
-    }
-
-    bool operator==(const AbstractIterator<T>& other) override {
-        const Iterator* otherIterator = dynamic_cast<const Iterator*>(&other);
-        return current == otherIterator->current;
-    }
-
-    bool operator!=(const AbstractIterator<T>& other) override {
-        return !(*this == other);
-    }
-};
-
-
-template<typename T>
-class LinkedList : public AbstractIterated<T> {
+class LinkedList /*: public AbstractIterated<T>*/ {
 private:
     Node<T>* head;
     Node<T>* tail;
@@ -193,30 +193,7 @@ public:
         }
     }
 
-
-    AbstractIterator<T>& begin() const override {
-        return Iterator(head);
-    }
-
-    AbstractIterator<T>& end() const override {
-        return Iterator<T>(nullptr);
-    }
-
-
-    ///не понимаю
-    //Iterator begin() {
-    //    return Iterator(head);
-    //}
-
-    //Iterator end() {
-    //    return Iterator(nullptr);
-    //}
-};
-
-/// «акинуть в класс?
-   
-
-   /* class Iterator {
+    class Iterator {
     private:
         Node<T>* current;
 
@@ -255,6 +232,29 @@ public:
 
     Iterator end() {
         return Iterator(nullptr);
-    }*/
+    }
 
+
+    //AbstractIterator<T>& begin() const override {
+    //    return Iterator(head);
+    //}
+
+    //AbstractIterator<T>& end() const override {
+    //    return Iterator<T>(nullptr);
+    //}
+
+
+    ///не понимаю
+    //Iterator begin() {
+    //    return Iterator(head);
+    //}
+
+    //Iterator end() {
+    //    return Iterator(nullptr);
+    //}
+};
+
+   
+
+   
 
