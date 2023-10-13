@@ -7,7 +7,7 @@ class AbstractIterator {
 public:
     virtual T& operator*() = 0;
     virtual AbstractIterator<T>& operator++() = 0;
-    virtual AbstractIterator<T> operator++(int) = 0;
+    virtual AbstractIterator<T>& operator++(int) = 0;
     virtual bool operator==(const AbstractIterator<T>& other) = 0;
     virtual bool operator!=(const AbstractIterator<T>& other) = 0;
     virtual ~AbstractIterator() {}
@@ -18,6 +18,7 @@ public:
 
 template<typename T>
 class AbstractIterated {
-    virtual AbstractIterated<T>& begin() = 0;
-    virtual AbstractIterated<T>& end() = 0;
+public:
+    virtual AbstractIterator<T>& begin() const = 0;
+    virtual AbstractIterator<T>& end() const = 0;
 };

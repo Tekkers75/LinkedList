@@ -48,6 +48,11 @@ int main() {
     list.print();
 
 
+    for (Iterator<int> &it = dynamic_cast< Iterator<int>&>(list.begin());  /*list.begin();*/ it != list.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+
     //for (LinkedList<int>::Iterator<int> it = list.begin(); it != list.end(); ++it) {
     //    std::cout << *it << " ";
     //}
