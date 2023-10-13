@@ -20,5 +20,5 @@ template<typename T>
 class AbstractIterated {
 public:
     virtual AbstractIterator<T>& begin() const = 0;
-    virtual AbstractIterator<T>& end() const = 0;
+    virtual AbstractIterator<T> end() const = 0;
 };
