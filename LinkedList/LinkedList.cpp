@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "LinkedList.h"
 #include "Iterator.h"
+#include "Test.h"
 
 
 int main() {
@@ -64,6 +65,20 @@ int main() {
     //}
     //std::cout << std::endl;
 
+    
+    
+    Test_operator();
+    Test_inc();
+    Test_post();
+    testIteratorEquality();
+    testIteratorEquality1();
+    
+    
+    
     return 0;
+
+
+
+
 }
 
