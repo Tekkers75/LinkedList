@@ -53,7 +53,7 @@ int main() {
     //}
     //std::cout << std::endl;
 
-    for (LinkedList<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+    for (LinkedList<int>::Iterator<int> it = list.begin(); it != list.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
