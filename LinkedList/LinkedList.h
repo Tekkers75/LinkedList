@@ -1,3 +1,4 @@
+// @author Саранчин К.А.
 #pragma once
 #include <iostream>
 #include "Iterator.h"
@@ -174,35 +175,42 @@ public:
         }
 
         T& operator*() override {
+            // Возвращает ссылку на данные текущего узла
             return current->data;
         }
 
         AbstractIterator<T>& operator++() override {
+            // Переход к следующему узлу
             current = current->next;
             return *this;
         }
 
         AbstractIterator<T>& operator++(int) override {
+            // Постфиксный инкремент (a++)
             Iterator<T> temp = *this;
             ++(*this);
             return temp;
         }
 
         bool operator==(const AbstractIterator<T>& other) override {
+            // Сравнение итераторов на равенство
             const Iterator* otherIterator = dynamic_cast<const Iterator*>(&other);
             return current == otherIterator->current;
         }
 
         bool operator!=(const AbstractIterator<T>& other) override {
+            // Сравнение итераторов на неравенство
             return !(*this == other);
         }
     };
 
     Iterator<T> begin() {
+        // Возвращает итератор, указывающий на начало списка
         return Iterator<T>(head);
     }
 
     Iterator<T> end() {
+        // Возвращает итератор, указывающий на конец списка (nullptr)
         return Iterator<T>(nullptr);
     }
 

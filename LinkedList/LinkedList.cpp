@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿// @author Саранчин К.А.
+#include <iostream>
 #include "LinkedList.h"
 #include "Iterator.h"
 #include "Test.h"
